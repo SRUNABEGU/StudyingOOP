@@ -1,5 +1,5 @@
 import pytest
-from main import Category, Product
+from src.main import Category, Product
 
 
 @pytest.fixture()
@@ -35,3 +35,21 @@ def test_category_writing_instruments(category_writing_instruments, product_penc
     assert category_writing_instruments.products == [product_pencil]
     assert Category.category_count == 1
     assert Category.product_count == 1
+
+
+def test_multiple_categories_and_products() -> None:
+    Category.category_count = 0
+    Category.product_count = 0
+
+    product1 = Product("Ручка", "Синяя гелевая ручка", 50.0, 10)
+    product2 = Product("Маркер", "Желтый маркер для выделения текста", 70.0, 5)
+    product3 = Product("Тетрадь", "96 листов, клетка", 100.0, 3)
+
+    assert Category.category_count == 0
+    assert Category.product_count == 0
+
+    category1 = Category("Ручки и маркеры", "Все для письма", [product1, product2])
+    category2 = Category("Бумажная продукция", "Тетради, блокноты", [product3])
+
+    assert Category.category_count == 2
+    assert Category.product_count == 3
