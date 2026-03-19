@@ -2,20 +2,56 @@ class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price  # Задание 4: Приватный атрибут цены
         self.quantity = quantity
+
+    # Задание 3: Класс-метод для создания объекта из словаря
+    @classmethod
+    def new_product(cls, product_data: dict):
+        return cls(**product_data)
+
+    # Задание 4: Геттер для цены
+    @property
+    def price(self):
+        return self.__price
+
+    # Задание 4: Сеттер для цены с проверкой
+    @price.setter
+    def price(self, new_price):
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+        else:
+            self.__price = new_price
 
 
 class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: list[Product] = None):
+    def __init__(self, name: str, description: str, products: list = None):
         self.name = name
         self.description = description
-        self.products = products if products else []
+        # Задание 1: Делаем список товаров приватным
+        self.__products = []
         Category.category_count += 1
-        Category.product_count += len(self.products)
+
+        # Добавляем продукты через метод, чтобы корректно работал счетчик
+        if products:
+            for product in products:
+                self.add_product(product)
+
+    # Задание 1: Метод для добавления товара
+    def add_product(self, product: Product):
+        self.__products.append(product)
+        Category.product_count += 1
+
+    # Задание 2: Геттер для вывода списка товаров в формате строк
+    @property
+    def products(self):
+        product_strings = []
+        for p in self.__products:
+            product_strings.append(f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт.")
+        return product_strings
 
 
 # if __name__ == "__main__":
