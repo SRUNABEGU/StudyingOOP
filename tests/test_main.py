@@ -45,7 +45,7 @@ def test_new_product_classmethod():
 
 def test_category_products_format(category_writing_instruments):
     """Тестируем геттер, который возвращает строки (Задание 2)"""
-    expected_output = ["Карандаш, 20.0 руб. Остаток: 10 шт."]
+    expected_output = "Карандаш, 20.0 руб. Остаток: 10 шт."
     assert category_writing_instruments.products == expected_output
 
 
