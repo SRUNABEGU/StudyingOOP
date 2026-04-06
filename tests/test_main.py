@@ -1,5 +1,5 @@
 import pytest
-from src.main import Category, Product
+from src.main import Category, Product, Smartphone, LawnGrass
 
 
 @pytest.fixture()
@@ -58,3 +58,51 @@ def test_category_counts(category_writing_instruments):
     new_p = Product("Линейка", "30см", 50.0, 2)
     category_writing_instruments.add_product(new_p)
     assert Category.product_count == 2
+
+def test_product_str(product_pencil):
+    """Проверка строкового отображения товара"""
+    assert str(product_pencil) == "Карандаш, 20.0 руб. Остаток: 10 шт."
+
+def test_category_str(category_writing_instruments):
+    """Проверка строкового отображения категории (сумма всех шт.)"""
+    # В фикстуре 1 карандаш (10 шт.)
+    assert str(category_writing_instruments) == "Письменные принадлежности, количество продуктов: 10 шт."
+
+def test_product_add():
+    """Проверка сложения двух товаров"""
+    p1 = Product("Товар A", "Описание", 100.0, 10)  # 100 * 10 = 1000
+    p2 = Product("Товар B", "Описание", 200.0, 2)   # 200 * 2 = 400
+    assert p1 + p2 == 1400.0
+
+def test_category_products_getter(category_writing_instruments):
+    """Проверка, что геттер всё еще выдает правильную строку"""
+    assert category_writing_instruments.products == "Карандаш, 20.0 руб. Остаток: 10 шт."
+
+
+def test_smartphone_init():
+    smart = Smartphone("iPhone 15", "Gray", 100000.0, 5, "high", "15", 128, "Gray")
+    assert smart.name == "iPhone 15"
+    assert smart.memory == 128
+
+
+def test_addition_type_error():
+    smart = Smartphone("iPhone 15", "Gray", 100000.0, 5, "high", "15", 128, "Gray")
+    grass = LawnGrass("Медонос", "Зеленая", 500.0, 10, "Russia", "14 days", "Green")
+
+    # Проверяем, что сложение разных классов вызывает TypeError
+    with pytest.raises(TypeError):
+        result = smart + grass
+
+
+def test_category_add_invalid_object():
+    cat = Category("Тест", "Описание")
+    # Пытаемся добавить строку вместо продукта
+    with pytest.raises(TypeError):
+        cat.add_product("Не продукт")
+
+
+def test_addition_same_type():
+    smart1 = Smartphone("iPhone 15", "Gray", 100000.0, 2, "high", "15", 128, "Gray")
+    smart2 = Smartphone("Samsung", "Black", 80000.0, 3, "high", "S23", 256, "Black")
+    # 100000*2 + 80000*3 = 200000 + 240000 = 440000
+    assert smart1 + smart2 == 440000.0
