@@ -24,7 +24,26 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
+        if type(self) is not type(other):
+            raise TypeError("Можно складывать только товары одного класса")
         return (self.price * self.quantity) + (other.price * other.quantity)
+
+
+class Smartphone(Product):
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    def __init__(self, name, description, price, quantity, country, germination_period, color):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
 
 
 class Category:
@@ -40,7 +59,10 @@ class Category:
             for product in products:
                 self.add_product(product)
 
-    def add_product(self, product: Product):
+    def add_product(self, product):
+        if not isinstance(product, Product):
+            raise TypeError("Добавлять в категорию можно только объекты Product или его наследников")
+
         self.__products.append(product)
         Category.product_count += 1
 
@@ -55,11 +77,26 @@ class Category:
 
 
 # if __name__ == "__main__":
-#     p1 = Product("Samsung Galaxy S23 Ultra", "256GB", 180000.0, 5)
-#     p2 = Product("Iphone 15", "512GB", 210000.0, 8)
+#     smart1 = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет", 180000.0, 5, "high", "S23", 256, "Gray")
+#     smart2 = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, "high", "15", 512, "Gray")
 #
-#     cat = Category("Смартфоны", "Описание", [p1, p2])
+#     grass1 = LawnGrass("Газонная трава", "Элитная трава", 500.0, 20, "Russia", "14 days", "Green")
 #
-#     print(p1)  # Выведет: Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.
-#     print(cat)  # Выведет: Смартфоны, количество продуктов: 13 шт.
-#     print(f"Общая стоимость на складе: {p1 + p2}")  # Выведет: 2580000.0
+#     print(f"Сложение смартфонов: {smart1 + smart2}")
+#
+#     try:
+#         print(smart1 + grass1)
+#     except TypeError as e:
+#         print(f"Ошибка при сложении: {e}")
+#
+#     category = Category("Электроника", "Техника для дома")
+#     category.add_product(smart1)
+#     print(f"В категории электроники теперь товаров: {category.product_count}")
+#
+#     try:
+#         category.add_product("Это просто строка, а не продукт")
+#     except TypeError as e:
+#         print(f"Ошибка при добавлении в категорию: {e}")
+#
+#     print("\nСписок товаров:")
+#     print(category.products)
