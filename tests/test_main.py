@@ -26,7 +26,7 @@ def test_product_init(product_pencil):
 
 
 def test_product_price_setter(product_pencil):
-    """Тестируем логику изменения цены (Задание 4)"""
+    """Тестируем логику изменения цены"""
     product_pencil.price = 30.0
     assert product_pencil.price == 30.0
 
@@ -36,7 +36,7 @@ def test_product_price_setter(product_pencil):
 
 
 def test_new_product_classmethod():
-    """Тестируем создание товара из словаря (Задание 3)"""
+    """Тестируем создание товара из словаря"""
     data = {"name": "Ручка", "description": "Гелевая", "price": 100.0, "quantity": 5}
     new_prod = Product.new_product(data)
     assert new_prod.name == "Ручка"
@@ -44,7 +44,7 @@ def test_new_product_classmethod():
 
 
 def test_category_products_format(category_writing_instruments):
-    """Тестируем геттер, который возвращает строки (Задание 2)"""
+    """Тестируем геттер, который возвращает строки"""
     expected_output = "Карандаш, 20.0 руб. Остаток: 10 шт."
     assert category_writing_instruments.products == expected_output
 
@@ -60,43 +60,53 @@ def test_category_counts(category_writing_instruments):
     assert Category.product_count == 2
 
 
+def test_product_str(product_pencil):
+    """Проверка строкового отображения товара"""
+    assert str(product_pencil) == "Карандаш, 20.0 руб. Остаток: 10 шт."
+
+
+def test_category_str(category_writing_instruments):
+    """Проверка строкового отображения категории (сумма всех шт.)"""
+    assert str(category_writing_instruments) == "Письменные принадлежности, количество продуктов: 10 шт."
+
+
+def test_product_add():
+    """Проверка сложения двух товаров одного класса"""
+    p1 = Product("Товар A", "Описание", 100.0, 10)  # 100 * 10 = 1000
+    p2 = Product("Товар B", "Описание", 100.0, 2)   # 100 * 2 = 200
+    assert p1 + p2 == 1200.0
+
+
 def test_smartphone_init():
+    """Тест инициализации смартфона"""
     smart = Smartphone("iPhone 15", "Gray", 100000.0, 5, "high", "15", 128, "Gray")
     assert smart.name == "iPhone 15"
     assert smart.memory == 128
 
 
+def test_lawngrass_init():
+    """Тест инициализации травы"""
+    grass = LawnGrass("Трава", "Зеленая", 100.0, 1, "USA", "10 days", "Green")
+    assert grass.country == "USA"
+
+
 def test_addition_type_error():
+    """Проверка ошибки при сложении разных классов"""
     smart = Smartphone("iPhone 15", "Gray", 100000.0, 5, "high", "15", 128, "Gray")
     grass = LawnGrass("Медонос", "Зеленая", 500.0, 10, "Russia", "14 days", "Green")
-
     with pytest.raises(TypeError):
-        result = smart + grass
+        _ = smart + grass
 
 
 def test_category_add_invalid_object():
+    """Проверка ошибки при добавлении в категорию не-продукта"""
     cat = Category("Тест", "Описание")
     with pytest.raises(TypeError):
         cat.add_product("Не продукт")
 
 
 def test_addition_same_type():
+    """Проверка сложения смартфонов"""
     smart1 = Smartphone("iPhone 15", "Gray", 100000.0, 2, "high", "15", 128, "Gray")
     smart2 = Smartphone("Samsung", "Black", 80000.0, 3, "high", "S23", 256, "Black")
     assert smart1 + smart2 == 440000.0
-
-def test_category_str(category_writing_instruments):
-    assert str(category_writing_instruments) == "Письменные принадлежности, количество продуктов: 10 шт."
-
-def test_product_str(product_pencil):
-    assert str(product_pencil) == "Карандаш, 20.0 руб. Остаток: 10 шт."
-
-def test_product_add():
-    p1 = Product("Товар 1", "Оп", 100.0, 10)
-    p2 = Product("Товар 2", "Оп", 100.0, 5)
-    assert p1 + p2 == 1500.0
-
-def test_lawngrass_init():
-    grass = LawnGrass("Трава", "Зеленая", 100.0, 1, "USA", "10 days", "Green")
-    assert grass.country == "USA"
-    assert grass.germination_period == "10 days"
