@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src\main.py: 97%</title>
+    <title>Coverage for src\shop.py: 97%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_dca529e9.css" type="text/css">
     <script src="coverage_html_cb_497bf287.js" defer></script>
@@ -11,7 +11,7 @@
 <header>
     <div class="content">
         <h1>
-            <span class="text">Coverage for </span><b>src\main.py</b>:
+            <span class="text">Coverage for </span><b>src\shop.py</b>:
             <span class="pc_cov">97%</span>
         </h1>
         <aside id="help_panel_wrapper">
@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="index.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.1">coverage.py v7.11.1</a>,
-            created at 2026-04-08 23:19 +0800
+            created at 2026-04-10 16:17 +0800
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -177,26 +177,6 @@
     <p class="run"><span class="n"><a id="t95" href="#t95">95</a></span><span class="t">        <span class="nam">total_quantity</span> <span class="op">=</span> <span class="nam">sum</span><span class="op">(</span><span class="nam">product</span><span class="op">.</span><span class="nam">quantity</span> <span class="key">for</span> <span class="nam">product</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">__products</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t96" href="#t96">96</a></span><span class="t">        <span class="key">return</span> <span class="fst">f"</span><span class="op">{</span><span class="nam">self</span><span class="op">.</span><span class="nam">name</span><span class="op">}</span><span class="fst">, &#1082;&#1086;&#1083;&#1080;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086; &#1087;&#1088;&#1086;&#1076;&#1091;&#1082;&#1090;&#1086;&#1074;: </span><span class="op">{</span><span class="nam">total_quantity</span><span class="op">}</span><span class="fst"> &#1096;&#1090;.</span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t97" href="#t97">97</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t98" href="#t98">98</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t"><span class="com"># if __name__ == "__main__":</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t"><span class="com">#     print("--- &#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1082;&#1072; &#1083;&#1086;&#1075;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; ---")</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t"><span class="com">#     p1 = Product("Samsung Galaxy S23 Ultra", "256GB, &#1057;&#1077;&#1088;&#1099;&#1081; &#1094;&#1074;&#1077;&#1090;", 180000.0, 5)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t"><span class="com">#     s1 = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, "high", "15", 512, "Gray")</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t103" href="#t103">103</a></span><span class="t"><span class="com">#     g1 = LawnGrass("&#1043;&#1072;&#1079;&#1086;&#1085;&#1085;&#1072;&#1103; &#1090;&#1088;&#1072;&#1074;&#1072;", "&#1069;&#1083;&#1080;&#1090;&#1085;&#1072;&#1103; &#1090;&#1088;&#1072;&#1074;&#1072;", 500.0, 20, "Russia", "14 days", "Green")</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t104" href="#t104">104</a></span><span class="t"><span class="com">#</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t105" href="#t105">105</a></span><span class="t"><span class="com">#     print("\n--- &#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1082;&#1072; &#1072;&#1073;&#1089;&#1090;&#1088;&#1072;&#1082;&#1090;&#1085;&#1086;&#1075;&#1086; &#1082;&#1083;&#1072;&#1089;&#1089;&#1072; ---")</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t106" href="#t106">106</a></span><span class="t"><span class="com">#     try:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t107" href="#t107">107</a></span><span class="t"><span class="com">#         bad_obj = BaseProduct()</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t108" href="#t108">108</a></span><span class="t"><span class="com">#     except TypeError as e:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t109" href="#t109">109</a></span><span class="t"><span class="com">#         print(f"&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1072;&#1103; &#1086;&#1096;&#1080;&#1073;&#1082;&#1072;: {e}")</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t110" href="#t110">110</a></span><span class="t"><span class="com">#</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t111" href="#t111">111</a></span><span class="t"><span class="com">#     print("\n--- &#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1082;&#1072; Category &#1080; &#1074;&#1099;&#1074;&#1086;&#1076;&#1072; ---")</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t112" href="#t112">112</a></span><span class="t"><span class="com">#     category = Category("&#1069;&#1083;&#1077;&#1082;&#1090;&#1088;&#1086;&#1085;&#1080;&#1082;&#1072;", "&#1058;&#1077;&#1093;&#1085;&#1080;&#1082;&#1072;")</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t113" href="#t113">113</a></span><span class="t"><span class="com">#     category.add_product(p1)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t114" href="#t114">114</a></span><span class="t"><span class="com">#     category.add_product(s1)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t115" href="#t115">115</a></span><span class="t"><span class="com">#</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t116" href="#t116">116</a></span><span class="t"><span class="com">#     print(category)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t117" href="#t117">117</a></span><span class="t"><span class="com">#     print(category.products)</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -206,7 +186,7 @@
             <a class="nav" href="index.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.1">coverage.py v7.11.1</a>,
-            created at 2026-04-08 23:19 +0800
+            created at 2026-04-10 16:17 +0800
         </p>
     </div>
 </footer>

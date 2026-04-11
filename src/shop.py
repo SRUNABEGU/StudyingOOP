@@ -1,9 +1,30 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class MixinLog:
+    def __init__(self, *args, **kwargs):
+        print(f"{self.__class__.__name__}({', '.join([repr(a) for a in args])})")  # pragma: no cover
+        super().__init__() # pragma: no cover
+
+
+class BaseProduct(ABC):
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+
+class Product(MixinLog, BaseProduct):
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+
+        super().__init__(name, description, price, quantity)
 
     @classmethod
     def new_product(cls, product_data: dict):
@@ -62,7 +83,6 @@ class Category:
     def add_product(self, product):
         if not isinstance(product, Product):
             raise TypeError("Добавлять в категорию можно только объекты Product или его наследников")
-
         self.__products.append(product)
         Category.product_count += 1
 
@@ -75,28 +95,3 @@ class Category:
         total_quantity = sum(product.quantity for product in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
 
-
-# if __name__ == "__main__":
-#     smart1 = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет", 180000.0, 5, "high", "S23", 256, "Gray")
-#     smart2 = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, "high", "15", 512, "Gray")
-#
-#     grass1 = LawnGrass("Газонная трава", "Элитная трава", 500.0, 20, "Russia", "14 days", "Green")
-#
-#     print(f"Сложение смартфонов: {smart1 + smart2}")
-#
-#     try:
-#         print(smart1 + grass1)
-#     except TypeError as e:
-#         print(f"Ошибка при сложении: {e}")
-#
-#     category = Category("Электроника", "Техника для дома")
-#     category.add_product(smart1)
-#     print(f"В категории электроники теперь товаров: {category.product_count}")
-#
-#     try:
-#         category.add_product("Это просто строка, а не продукт")
-#     except TypeError as e:
-#         print(f"Ошибка при добавлении в категорию: {e}")
-#
-#     print("\nСписок товаров:")
-#     print(category.products)
