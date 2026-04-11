@@ -18,12 +18,14 @@ class BaseProduct(ABC):
 
 
 class Product(MixinLog, BaseProduct):
-    def __init__(self, name: str, description: str, price: float, quantity: int):
+    def __init__(self, name, description, price, quantity):
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
-
         super().__init__(name, description, price, quantity)
 
     @classmethod
@@ -85,6 +87,14 @@ class Category:
             raise TypeError("Добавлять в категорию можно только объекты Product или его наследников")
         self.__products.append(product)
         Category.product_count += 1
+
+    def average_price(self):
+        try:
+            total_price = sum([product.price for product in self.__products])
+            avg_price = total_price / len(self.__products)
+            return avg_price
+        except ZeroDivisionError:
+            return 0
 
     @property
     def products(self):
