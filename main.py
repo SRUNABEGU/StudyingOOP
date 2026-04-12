@@ -19,3 +19,15 @@ if __name__ == "__main__":
 
     print(category)
     print(category.products)
+
+    print("\n--- Проверка новых фич ДЗ 17.1 ---")
+
+    try:
+        Product("Тестовый товар", "Ошибочный", 1000.0, 0)
+    except ValueError as e:
+        print(f"Ожидаемая ошибка: {e}")
+
+    print(f"Средний чек в категории '{category.name}': {category.average_price()} руб.")
+
+    empty_category = Category("Пустая", "Тут ничего нет", [])
+    print(f"Средний чек в пустой категории: {empty_category.average_price()} руб.")

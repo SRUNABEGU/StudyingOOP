@@ -89,3 +89,14 @@ def test_category_add_invalid_object():
 def test_base_product_abstract():
     with pytest.raises(TypeError):
         BaseProduct()
+
+def test_product_init_zero_quantity():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Бракованный товар", "Описание", 1000.0, 0)
+
+def test_category_average_price(category_writing_instruments):
+    assert category_writing_instruments.average_price() > 0
+
+def test_category_average_price_empty():
+    empty_category = Category("Пустая", "Нет товаров", [])
+    assert empty_category.average_price() == 0
